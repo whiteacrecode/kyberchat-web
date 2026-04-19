@@ -7,49 +7,66 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="policy-page">
+<body>
 
     <div class="container">
-        <a href="index.html" class="nav-link">&larr; Back to Home</a>
-        
-        <div class="page-header">
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo">
+        <nav style="margin-top: 20px;">
+            <a href="index.html" style="color: var(--primary-blue); text-decoration: none;">&larr; Back to Home</a>
+        </nav>
+
+        <header>
+            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
             <h1>Privacy Policy & Terms of Service</h1>
-        </div>
+            <p class="subtitle">Our commitment to your privacy and security.</p>
+        </header>
 
         <section>
             <h2>1. Introduction</h2>
-            <p>Welcome to KyberChat, an encrypted communication platform developed and maintained by WhiteAcre Software LLC. This document outlines our Privacy Policy and Terms of Service (TOS) regarding the collection, use, and protection of your data.</p>
+            <div class="card">
+                <p>Welcome to KyberChat, an encrypted communication platform developed and maintained by WhiteAcre Software. This document outlines our Privacy Policy and Terms of Service (TOS) regarding the collection, use, and protection of your data.</p>
+            </div>
         </section>
 
         <section>
             <h2>2. Encryption & Message Privacy</h2>
-            <p>Security is our foundational principle. KyberChat uses the latest E3E encryption protocols to secure all communications. Because of this architectural design, <strong>KyberChat has no ability to read, decrypt, or access users' chat messages</strong> under any circumstances. Only the intended recipients of a message hold the keys necessary to decrypt it.</p>
+            <div class="card">
+                <p>Security is our foundational principle. KyberChat uses the latest E2E encryption protocols to secure all communications. Because of this architectural design, <strong>KyberChat has no ability to read, decrypt, or access users' chat messages</strong> under any circumstances. Only the intended recipients of a message hold the keys necessary to decrypt it.</p>
+            </div>
         </section>
 
         <section>
-            <h2>3. Data Collection (Terms of Service)</h2>
-            <p>By using KyberChat, you agree to our Terms of Service. In order to operate the platform and route messages effectively, KyberChat collects only the minimal information strictly needed to run the service (such as account identifiers and network routing metadata). As stated above, this operational data does <strong>not</strong> include the contents of your messages.</p>
+            <h2>3. Data Collection</h2>
+            <div class="card">
+                <p>By using KyberChat, you agree to our Terms of Service. In order to operate the platform and route messages effectively, KyberChat collects only the minimal information strictly needed to run the service (such as account identifiers and network routing metadata). This operational data does <strong>not</strong> include the contents of your messages.</p>
+            </div>
         </section>
 
         <section>
             <h2>4. Infrastructure</h2>
-            <p>To ensure high performance and reliability, KyberChat runs securely on the Google Cloud Platform (GCP). All infrastructure deployments are managed strictly by WhiteAcre Software LLC.</p>
+            <div class="card">
+                <p>To ensure high performance and reliability, KyberChat runs securely on the Google Cloud Platform (GCP). All infrastructure deployments are managed strictly by WhiteAcre Software.</p>
+            </div>
         </section>
 
         <section>
-            <h2>5. Legal Compliance & Government Requests</h2>
-            <p>WhiteAcre Software LLC respects the rule of law. KyberChat will respond to all lawful requests for information from the US Government. However, please note the following limitations regarding our capabilities:</p>
-            <ul>
-                <li>WhiteAcre LLC will <strong>only</strong> respond to valid, binding legal requests from <b>US Federal or state governments</b>. </li>
-                <li>Because we cannot read user messages due to our E3E encryption implementation, we can only provide the limited operational and metadata we actually possess.</li>
-            </ul>
+            <h2>5. Legal Compliance</h2>
+            <div class="card">
+                <p>WhiteAcre Software respects the rule of law. KyberChat will respond to all lawful requests for information from the US Government. However, please note the following limitations regarding our capabilities:</p>
+                <ul>
+                    <li>WhiteAcre Software will <strong>only</strong> respond to valid, binding legal requests from <b>US Federal or state governments</b>. </li>
+                    <li>Because we cannot read user messages due to our E2E encryption implementation, we can only provide the limited operational and metadata we actually possess.</li>
+                </ul>
+            </div>
         </section>
 
-        <div class="company-info">
-            <strong>Corporate Entity Information:</strong><br>
-            WhiteAcre Software LLC is a US Limited Liability Corporation incorporated in the State of Wisconsin.
+        <div class="card" style="margin-top: 40px; text-align: center;">
+            <strong>Corporate Entity Information</strong><br>
+            WhiteAcre Software is a US Limited Liability Corporation incorporated in the State of Wisconsin.
         </div>
+
+        <footer>
+            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
+        </footer>
     </div>
 
 </body>

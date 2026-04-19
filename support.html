@@ -8,87 +8,106 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: var(--text-dim);
         }
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px;
+            background-color: var(--code-bg);
+            border: 1px solid #30363d;
+            border-radius: 6px;
             font-family: inherit;
+            color: var(--text-main);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px var(--accent-glow);
         }
         .btn-submit {
-            padding: 10px 20px;
-            background-color: #0056b3;
-            color: white;
+            padding: 12px 24px;
+            background-color: var(--primary-blue);
+            color: var(--dark-bg);
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
+            transition: opacity 0.2s;
         }
         .btn-submit:hover {
-            background-color: #004494;
+            opacity: 0.9;
         }
     </style>
 </head>
-<body class="policy-page">
+<body>
 
     <div class="container">
-        <a href="index.html" class="nav-link">&larr; Back to Home</a>
-        
-        <div class="page-header">
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo">
+        <nav style="margin-top: 20px;">
+            <a href="index.html" style="color: var(--primary-blue); text-decoration: none;">&larr; Back to Home</a>
+        </nav>
+
+        <header>
+            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
             <h1>Support & Disclaimer</h1>
-        </div>
+            <p class="subtitle">How can we help you today?</p>
+        </header>
 
         <section>
             <h2>Open Source Product</h2>
-            <p>KyberChat is proud to be an open source product. We believe in transparency and community, which is why our source code is freely available for review and contribution.</p>
+            <div class="card">
+                <p>KyberChat is proud to be an open source product. We believe in transparency and community, which is why our source code is freely available for review and contribution.</p>
+            </div>
         </section>
 
         <section>
             <h2>Legal Disclaimer</h2>
-            <p><strong>Liability Disclaimer:</strong> By using KyberChat, you agree that you cannot hold WhiteAcre LLC liable for any issues, damages, or losses that come from using the app. The software is provided "as is", without any warranties or guarantees of any kind. Use at your own risk.</p>
+            <div class="card">
+                <p><strong>Liability Disclaimer:</strong> By using KyberChat, you agree that you cannot hold WhiteAcre Software liable for any issues, damages, or losses that come from using the app. The software is provided "as is", without any warranties or guarantees of any kind. Use at your own risk.</p>
+            </div>
         </section>
 
         <section>
             <h2>Support & Feature Requests</h2>
-            <p>Need help or have an idea for a new feature? Fill out the form below, and our team will look into it.</p>
-            <form action="submit_support.php" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+            <div class="card">
+                <p style="margin-bottom: 25px;">Need help or have an idea for a new feature? Fill out the form below, and our team will look into it.</p>
+                <form action="submit_support.php" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    </div>
 
-                <div class="form-group">
-                    <label for="type">Request Type</label>
-                    <select id="type" name="type" required>
-                        <option value="support">Support</option>
-                        <option value="feature">Feature Request</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="type">Request Type</label>
+                        <select id="type" name="type" required>
+                            <option value="support">Support</option>
+                            <option value="feature">Feature Request</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Describe your request..."></textarea>
+                    </div>
 
-                <button type="submit" class="btn-submit">Submit</button>
-            </form>
+                    <button type="submit" class="btn-submit">Submit Request</button>
+                </form>
+            </div>
         </section>
         
-        <footer style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #666;">
-            <p>&copy; 2026 WhiteAcre Software LLC. All rights reserved.</p>
+        <footer>
+            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
         </footer>
     </div>
 

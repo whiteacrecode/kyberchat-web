@@ -3,104 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KyberChat - Technical Specification</title>
+    <title>KyberChat - Secure E2E Messaging</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div class="container">
         <header>
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo" onerror="this.src='logo_placeholder.png'">
-            <h1>KyberChat Cryptographic Architecture</h1>
-            <p class="subtitle">A Hybrid Post-Quantum Zero-Knowledge Messaging Protocol</p>
+            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
+            <h1>KyberChat</h1>
+            <p class="subtitle">Next-generation, open-source E2E encrypted communication developed by WhiteAcre Software.</p>
+            <div style="margin-top: 30px;">
+                <a href="https://github.com/whiteacrellc/kyberchat-ios" style="display: inline-block; padding: 10px 20px; background-color: var(--primary-blue); color: var(--dark-bg); text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px;" target="_blank">View iOS App Source</a>
+                <a href="https://github.com/whiteacrellc/kyberchat-server" style="display: inline-block; padding: 10px 20px; background-color: transparent; color: var(--primary-blue); border: 1px solid var(--primary-blue); text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px;" target="_blank">View Server Source</a>
+            </div>
         </header>
 
-        <section id="overview">
-            <h2>The Mission</h2>
+        <section id="features">
+            <h2>Why KyberChat?</h2>
+            
             <div class="card">
-                <p>KyberChat is built to defend your digital destiny against the forces of eavesdropping and the looming shadow of quantum-capable adversaries! It employs a <strong>Zero-Knowledge</strong> relay model, ensuring the server never sees your plaintext, your keys, or your contacts.</p>
-                <div class="badges">
-                    <span class="badge">X25519</span>
-                    <span class="badge">AES-256-GCM</span>
-                    <span class="badge">Double Ratchet</span>
-                    <span class="badge pqc-badge">ML-KEM-768 (Kyber)</span>
-                </div>
+                <h3>Technical Excellence</h3>
+                <p>Read about KyberChat's hybrid post-quantum encryption and zero-knowledge architecture <a href="about.html" style="color: var(--primary-blue);">on our technical page</a>.</p>
             </div>
-        </section>
 
-        <section id="identity">
-            <h2>Identity & Key Derivation</h2>
             <div class="card">
-                <h3>BIP39 Identity</h3>
-                <p>Your identity is not a phone number or an email—it is a <strong>24-word seed phrase</strong>. This master entropy source allows for complete account recovery without central authorities.</p>
-                
-                <pre><code>CSPRNG (256 bits) -> BIP39 Mnemonic (24 words)
-Seed = PBKDF2-HMAC-SHA512(Mnemonic, salt="mnemonic", 2048 iters)</code></pre>
-
-                <h3>Deterministic Derivation</h3>
-                <p>All protocol keys are derived from the master seed using <strong>HKDF-SHA256</strong> with specific domain separation strings:</p>
-                <ul>
-                    <li><code>kyberchat-uuid</code>: Generates the persistent User UUID.</li>
-                    <li><code>kyberchat-identity-key</code>: Derives the X25519 Identity Keypair.</li>
-                    <li><code>kyberchat-signing-key</code>: Derives the Ed25519 Signing Keypair.</li>
-                    <li><code>kyberchat-kem-seed</code>: Derives the 64-byte seed for ML-KEM-768.</li>
-                </ul>
+                <h3>Absolute Privacy</h3>
+                <p>Built from the ground up with state-of-the-art End-to-End (E2E) encryption. Your messages are locked, and only you and your recipient hold the keys.</p>
             </div>
-        </section>
 
-        <section id="handshake">
-            <h2>The Hybrid Handshake (X3DH)</h2>
             <div class="card">
-                <p>To establish a secure session, KyberChat uses an Extended Triple Diffie-Hellman (X3DH) exchange, hybridized with <strong>Post-Quantum Cryptography (PQC)</strong> to prevent "Harvest Now, Decrypt Later" attacks.</p>
-                
-                <div class="math-block">
-                    <code>SK = HKDF-SHA256(DH1 || DH2 || DH3 || DH4 || KEM_SS)</code>
-                </div>
-
-                <p>Where:</p>
-                <ul>
-                    <li><strong>DH1...DH3</strong>: Standard X25519 Diffie-Hellman operations between Identity, Signed Pre-Keys, and Ephemeral Keys.</li>
-                    <li><strong>DH4</strong>: Optional DH using a One-Time Pre-Key (OTPK) for forward secrecy.</li>
-                    <li><strong>KEM_SS</strong>: A 32-byte shared secret generated via <strong>ML-KEM-768 (Kyber)</strong> encapsulation against the recipient's public key.</li>
-                </ul>
-                <p>If either the classical (X25519) or the post-quantum (ML-KEM) layer is compromised, the shared secret remains secure as long as the other layer holds!</p>
+                <h3>Fully Open Source</h3>
+                <p>Trust through transparency. Both our iOS client and secure server infrastructure are entirely open source and available for public audit on GitHub.</p>
             </div>
-        </section>
 
-        <section id="ratchet">
-            <h2>The Messaging Layer (Double Ratchet)</h2>
             <div class="card">
-                <p>Once the <code>SK</code> is established, the <strong>Double Ratchet</strong> protocol takes over. It provides self-healing properties and perfect forward secrecy by rotating keys for every single message.</p>
-                
-                <h3>Diffie-Hellman Ratchet</h3>
-                <p>Every time a reply is sent, a new X25519 exchange occurs, providing "backwards secrecy" (healing from a compromised state).</p>
-                
-                <h3>Symmetric Ratchet</h3>
-                <p>Two chains of keys (Send and Receive) are derived using HMAC-SHA256. Each message uses a unique key that is deleted immediately after use.</p>
-                
-                <pre><code>MessageKey = HMAC-SHA256(ChainKey, 0x01)
-NextChainKey = HMAC-SHA256(ChainKey, 0x02)</code></pre>
-            </div>
-        </section>
-
-        <section id="protection">
-            <h2>Payload & Traffic Defense</h2>
-            <div class="card">
-                <h3>Encryption</h3>
-                <p>Messages are encrypted using <strong>AES-256-GCM</strong>, providing both confidentiality and integrity with an authenticated tag.</p>
-                
-                <h3>Traffic Analysis Defense</h3>
-                <p>To defeat metadata analysis and traffic pattern recognition, every message is padded to a fixed size before it leaves your device.</p>
-                <div class="math-block">
-                    <strong>Fixed Padded Size: 1024 Bytes</strong>
-                </div>
-                <p>An observer watching the network sees a stream of identical 1024-byte packets. They cannot tell if you are sending "Hi" or a 900-character technical manifesto!</p>
+                <h3>Reliable Infrastructure</h3>
+                <p>Powered by modern cloud architecture ensuring high availability and lightning-fast message delivery without compromising your data security.</p>
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2026 KyberChat Foundation. Justice is served encrypted.</p>
-            <p>🥄 "Spoon!" 🥄</p>
+            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
+            <p><a href="privacy_policy.html" style="color: var(--text-dim);">Privacy Policy & Terms of Service</a> | <a href="support.html" style="color: var(--text-dim);">Support & Disclaimer</a></p>
         </footer>
     </div>
+
 </body>
 </html>
