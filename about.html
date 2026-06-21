@@ -14,7 +14,7 @@
         <header>
             <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo" onerror="this.src='logo_placeholder.png'">
             <h1>KyberChat Cryptographic Architecture</h1>
-            <p class="subtitle">A Hybrid Post-Quantum Zero-Knowledge Messaging Protocol</p>
+            <p class="subtitle">A Post-Quantum Zero-Knowledge Messaging Protocol</p>
         </header>
 
         <section id="overview">
@@ -30,6 +30,18 @@
             </div>
         </section>
 
+	<section id="quantum-resistance">
+          <h2>Post-Quantum Encryption Technology</h2>
+        <div class="card">
+          <p>KyberChat is built to survive the era of quantum computing. Traditional encryption (like RSA or Elliptic Curve) relies on mathematical problems that could be solved in seconds by a sufficiently powerful quantum computer. KyberChat mitigates this risk by using the following standards:</p>
+        <ul>
+            <li><strong>ML-KEM (Kyber):</strong> We utilize the CRYSTALS-Kyber algorithm for Key Encapsulation. This provides a post-quantum secure method to establish shared secrets, ensuring that even if encrypted traffic is intercepted today and stored, it cannot be decrypted by future quantum adversaries (protecting against "harvest now, decrypt later" attacks).</li>
+            <li><strong>ML-DSA (Dilithium):</strong> Our digital signatures utilize Dilithium, ensuring that the identity of the person you are communicating with is verified with post-quantum cryptographic primitives.</li>
+        </ul>
+    </div>
+</section>
+
+	
         <section id="identity">
             <h2>Identity & Key Derivation</h2>
             <div class="card">
