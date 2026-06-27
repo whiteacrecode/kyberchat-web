@@ -19,6 +19,8 @@ COPY about.html .
 COPY privacy_policy.html .
 COPY support.html .
 COPY submit_support.php .
+COPY android_beta.html .
+COPY submit_beta_signup.php .
 COPY styles.css .
 COPY kyberchat_logo.png .
 COPY favicon.ico .
@@ -47,5 +49,6 @@ RUN echo 'server { \
 # Expose port 8080 (required for Cloud Run)
 EXPOSE 8080
 
-# Start PHP-FPM in the background and Nginx in the foreground
 CMD php-fpm -D && nginx -g "daemon off;"
+
+
