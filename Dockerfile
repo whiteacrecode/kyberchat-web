@@ -16,10 +16,10 @@ WORKDIR /var/www/html
 # Copy all website files to the container
 COPY index.html .
 COPY about.html .
-COPY privacy_policy.html .
+COPY privacy.html .
 COPY support.html .
 COPY submit_support.php .
-COPY android_beta.html .
+COPY android.html .
 COPY submit_beta_signup.php .
 COPY styles.css .
 COPY kyberchat_logo.png .
@@ -31,8 +31,29 @@ RUN echo 'server { \
     server_name localhost; \
     root /var/www/html; \
     index index.html index.php; \
+    \
+    # Redirects for old/extension-based URLs to clean URLs \
+    if ($request_uri ~ ^/privacy_policy(\.html)?$) { \
+        return 301 /privacy; \
+    } \
+    if ($request_uri ~ ^/privacy\.html$) { \
+        return 301 /privacy; \
+    } \
+    if ($request_uri ~ ^/android_beta(\.html)?$) { \
+        return 301 /android; \
+    } \
+    if ($request_uri ~ ^/android\.html$) { \
+        return 301 /android; \
+    } \
+    if ($request_uri ~ ^/about\.html$) { \
+        return 301 /about; \
+    } \
+    if ($request_uri ~ ^/support\.html$) { \
+        return 301 /support; \
+    } \
+    \
     location / { \
-        try_files $uri $uri/ /index.html; \
+        try_files $uri $uri.html $uri/ /index.html; \
     } \
     location ~ \.php$ { \
         fastcgi_pass 127.0.0.1:9000; \

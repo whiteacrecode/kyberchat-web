@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             echo "<h2>Thank you! Your request has been submitted successfully.</h2>";
-            echo "<p><a href='support.html'>Return to Support Page</a></p>";
+            echo "<p><a href='/support'>Return to Support Page</a></p>";
         } else {
             echo "<h2>Error submitting request. Please try again later.</h2>";
             echo "Error: " . $stmt->error;
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 } else {
     // Redirect back to form if accessed directly without POST
-    header("Location: support.html");
+    header("Location: /support");
     exit();
 }
 ?>
