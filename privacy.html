@@ -3,78 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy & Terms of Service - KyberChat</title>
+    <title>Privacy Policy - KyberChat</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <nav style="margin-top: 20px;">
-            <a href="/" style="color: var(--primary-blue); text-decoration: none;">&larr; Back to Home</a>
-        </nav>
+    <!-- Modern Sticky Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo-link">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon">
+                <span class="logo-text">KyberChat</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">Technology</a>
+                <a href="/privacy" class="active">Privacy</a>
+                <a href="/support">Support</a>
+                <a href="/signup" class="btn-nav-signup">Join Beta</a>
+            </div>
+        </div>
+    </nav>
 
-        <header>
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
-            <h1>Privacy Policy & Terms of Service</h1>
-            <p class="subtitle">Our commitment to your privacy and security.</p>
+    <!-- Content Container -->
+    <div class="container tech-spec-container">
+        <header style="text-align: left; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 40px;">
+            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon" style="width: 64px; height: 64px; margin-bottom: 16px;">
+            <h1>Privacy Policy & Terms</h1>
+            <p class="subtitle">Our commitment to user ownership, absolute anonymity, and zero-knowledge storage.</p>
         </header>
 
-        <section>
-            <h2>1. Introduction</h2>
+        <section class="tech-section">
+            <h2>1. Core Tenets</h2>
             <div class="card">
-                <p>Welcome to KyberChat, an encrypted communication platform developed and maintained by WhiteAcre Software. This document outlines our Privacy Policy and Terms of Service (TOS) regarding the collection, use, and protection of your data.</p>
+                <p>Welcome to KyberChat, a privacy-forward communication platform developed and maintained by WhiteAcre Software. Our mission is to hand users total ownership over their personal identity and digital footprint. Traditional systems force you to give up phone numbers and contact books—we believe you should keep them to yourself.</p>
             </div>
         </section>
 
-        <section>
-            <h2>2. Encryption & Message Privacy</h2>
+        <section class="tech-section">
+            <h2>2. Message Privacy & Mathematical Control</h2>
             <div class="card">
-                <p>Security is our foundational principle. KyberChat uses the latest E2E encryption protocols to secure all communications. Because of this architectural design, <strong>KyberChat has no ability to read, decrypt, or access users' chat messages</strong> under any circumstances. Only the intended recipients of a message hold the keys necessary to decrypt it.</p>
+                <p>Security is not just a policy—it is our architecture. KyberChat implements hybrid end-to-end (E2E) encryption. Because of this zero-knowledge engineering standard, <strong>WhiteAcre Software and KyberChat have absolutely no mechanism to decrypt, intercept, or access your chat messages, audio data, video feeds, or files</strong> under any circumstances. You hold the keys, and the server knows nothing.</p>
             </div>
         </section>
 
-        <section>
-            <h2>3. Data Collection</h2>
+        <section class="tech-section">
+            <h2>3. Zero-Knowledge Metadata Storage</h2>
             <div class="card">
-                <p>By using KyberChat, you agree to our Terms of Service. In order to operate the platform and route messages effectively, KyberChat collects only the minimal information strictly needed to run the service (such as account identifiers and network routing metadata). This operational data does <strong>not</strong> include the contents of your messages. White Acre Software does not share any data with third parties.</p>
+                <p>In order to route and relay your encrypted messages effectively, the platform processes minimal network routing metadata (such as temporary account identifiers). However, this operational data is kept strictly decoupled from any real-world identifiers. All lookups and search indices on our database are heavily hashed client-side, ensuring we store no contacts, no logs, and no trackable personal profiles. We do not sell or share any information with third parties.</p>
             </div>
         </section>
 
-        <section>
-            <h2>4. Infrastructure</h2>
+        <section class="tech-section">
+            <h2>4. User Rights & Legal Standards</h2>
             <div class="card">
-                <p>To ensure high performance and reliability, KyberChat runs securely on the Google Cloud Platform (GCP). All infrastructure deployments are managed strictly by WhiteAcre Software.</p>
+                <p>WhiteAcre Software operates strictly within the framework of United States law. We will respond only to valid, binding court orders or search warrants issued by <b>US Federal or state governments</b>. However, because our systems are cryptographically zero-knowledge by design, we possess no unencrypted data, message transcripts, or keys to provide to law enforcement, ensuring your mathematical rights remain safe.</p>
             </div>
         </section>
 
-        <section>
-            <h2>5. Legal Compliance</h2>
+        <section class="tech-section" style="margin-bottom: 80px;">
+            <h2>5. Changes & Revisions</h2>
             <div class="card">
-                <p>WhiteAcre Software respects the rule of law. KyberChat will respond to all lawful requests for information from the US Government. However, please note the following limitations regarding our capabilities:</p>
-                <ul>
-                    <li>WhiteAcre Software will <strong>only</strong> respond to valid, binding legal requests from <b>US Federal or state governments</b>. </li>
-                    <li>Because we cannot read user messages due to our E2E encryption implementation, we can only provide the limited operational and metadata we actually possess. </li>
-                </ul>
+                <p>We update this Privacy Policy periodically to reflect emerging cryptographic benchmarks and platform changes. If there are significant updates, prominent alerts will be made available both on our public website and inside the KyberChat application. All historical versions remain archived for public audit.</p>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim); text-align: center;">
+                    <strong>Corporate Entity:</strong> WhiteAcre Software is a US Limited Liability Corporation incorporated in the State of Wisconsin.
+                </p>
             </div>
         </section>
-        <section>
-	  <h2>6. Changes to this policy</h2>
-	  <div class="card">
-	    <p>
-We change this Privacy Policy from time to time. We will not reduce your rights under this Privacy Policy without your explicit consent. We always indicate the date the last changes were published and we offer access to archived versions for your review. If changes are significant, we’ll provide a more prominent notice both on the website and in the application.
-	    </p>
-	  </div>
-	</section>
-        <div class="card" style="margin-top: 40px; text-align: center;">
-            <strong>Corporate Entity Information</strong><br>
-            WhiteAcre Software is a US Limited Liability Corporation incorporated in the State of Wisconsin.
-        </div>
-
-        <footer>
-            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
-        </footer>
     </div>
+
+    <!-- Beautiful Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WhiteAcre Software. Justice is served fully encrypted.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="/about">Technology Deep-Dive</a>
+                <span>|</span>
+                <a href="/privacy">Privacy Policy</a>
+                <span>|</span>
+                <a href="/support">Support Desk</a>
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>

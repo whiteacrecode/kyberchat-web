@@ -3,113 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support & Disclaimer - KyberChat</title>
+    <title>Support Desk & Help - KyberChat</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--text-dim);
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--code-bg);
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            font-family: inherit;
-            color: var(--text-main);
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-        .btn-submit {
-            padding: 12px 24px;
-            background-color: var(--primary-blue);
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: opacity 0.2s;
-        }
-        .btn-submit:hover {
-            opacity: 0.9;
-        }
-    </style>
 </head>
 <body>
 
-    <div class="container">
-        <nav style="margin-top: 20px;">
-            <a href="/" style="color: var(--primary-blue); text-decoration: none;">&larr; Back to Home</a>
-        </nav>
-
-        <header>
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
-            <h1>Support & Disclaimer</h1>
-            <p class="subtitle">How can we help you today?</p>
-        </header>
-
-        <section>
-            <h2>Open Source Product</h2>
-            <div class="card">
-                <p>KyberChat is proud to be an open source product. We believe in transparency and community, which is why our source code is freely available for review and contribution.</p>
+    <!-- Modern Sticky Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo-link">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon">
+                <span class="logo-text">KyberChat</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">Technology</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/support" class="active">Support</a>
+                <a href="/signup" class="btn-nav-signup">Join Beta</a>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section>
-            <h2>Legal Disclaimer</h2>
-            <div class="card">
-                <p><strong>Liability Disclaimer:</strong> By using KyberChat, you agree that you cannot hold WhiteAcre Software liable for any issues, damages, or losses that come from using the app. The software is provided "as is", without any warranties or guarantees of any kind. Use at your own risk.</p>
+    <!-- Support Content container -->
+    <div class="container form-container" style="max-width: 700px; margin-top: 140px;">
+        <div class="form-card" style="padding: 40px 30px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon" style="width: 48px; height: 48px; margin-bottom: 12px;">
+                <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 8px;">Support Desk & Feedback</h1>
+                <p style="font-size: 0.95rem; color: var(--text-dim);">Have a question, feedback, or a feature request? Let our engineering team know!</p>
             </div>
-        </section>
 
-        <section>
-            <h2>Support & Feature Requests</h2>
-            <div class="card">
-                <p style="margin-bottom: 25px;">Need help or have an idea for a new feature? Fill out the form below, and our team will look into it.</p>
-                <form action="submit_support.php" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Your Name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="your@email.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="type">Request Type</label>
-                        <select id="type" name="type" required>
-                            <option value="support">Support</option>
-                            <option value="feature">Feature Request</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Describe your request..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Submit Request</button>
-                </form>
+            <!-- Open Source Statement -->
+            <div style="background: rgba(0,170,255,0.04); border: 1px solid rgba(0,170,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 30px; text-align: left;">
+                <h4 style="color: var(--primary-blue); font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 6px; font-size: 0.95rem;">👐 Transparent & Open Source</h4>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0;">KyberChat is proud to be entirely open source. We believe in trust through transparency, which is why our mobile applications and secure servers are freely available for public audit and community contributions on GitHub.</p>
             </div>
-        </section>
-        
-        <footer>
-            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
-        </footer>
+
+            <!-- Form -->
+            <form action="submit_support.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Name" maxlength="100">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" maxlength="255">
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Request Category</label>
+                    <select id="type" name="type" required style="background-color: #030712; color: #fff; border: 1px solid rgba(255,255,255,0.08);">
+                        <option value="support">Technical Support</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="bug">Report a Bug</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Detailed Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Describe your request..." maxlength="2000"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Ticket</button>
+            </form>
+
+            <!-- Legal Disclaimer Summary -->
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); text-align: left;">
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0; line-height: 1.5;">
+                    <strong>Liability Disclaimer:</strong> By using KyberChat, you agree that you cannot hold WhiteAcre Software liable for any issues, damages, or data losses arising from the use of this application. This software is provided "as is" without warranty of any kind.
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- Beautiful Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WhiteAcre Software. Justice is served fully encrypted.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="/about">Technology Deep-Dive</a>
+                <span>|</span>
+                <a href="/privacy">Privacy Policy</a>
+                <span>|</span>
+                <a href="/support">Support Desk</a>
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Private Beta - KyberChat</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Modern Sticky Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo-link">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon">
+                <span class="logo-text">KyberChat</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">Technology</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/support">Support</a>
+                <a href="/signup" class="btn-nav-signup active">Join Beta</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Unified Signup Form -->
+    <div class="container form-container">
+        <div class="form-card">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon" style="width: 48px; height: 48px; margin-bottom: 12px;">
+                <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; color: #fff; margin-bottom: 8px;">Apply for Private Beta</h1>
+                <p style="font-size: 0.95rem; color: var(--text-dim);">KyberChat is currently in private beta testing. Fill out the application below and we will send you your download slot.</p>
+            </div>
+            
+            <form action="submit_beta_signup.php" method="POST">
+                
+                <div class="form-group">
+                    <label>Select Your Platform</label>
+                    <div class="platform-selector">
+                        <div class="platform-radio-btn">
+                            <input type="radio" id="platform_ios" name="platform" value="ios" required>
+                            <label for="platform_ios" class="platform-label">
+                                🍎 Apple iOS
+                            </label>
+                        </div>
+                        <div class="platform-radio-btn">
+                            <input type="radio" id="platform_android" name="platform" value="android" required checked>
+                            <label for="platform_android" class="platform-label">
+                                🤖 Android
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required placeholder="First Name" maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required placeholder="Last Name" maxlength="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" maxlength="255">
+                </div>
+
+                <button type="submit" class="btn-submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Inline Script to Pre-select Platform based on query parameter -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const platform = params.get('platform');
+            if (platform === 'ios') {
+                document.getElementById('platform_ios').checked = true;
+            } else if (platform === 'android') {
+                document.getElementById('platform_android').checked = true;
+            }
+        });
+    </script>
+
+    <!-- Beautiful Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="/about">Technology Deep-Dive</a>
+                <span>|</span>
+                <a href="/privacy">Privacy Policy</a>
+                <span>|</span>
+                <a href="/support">Support Desk</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

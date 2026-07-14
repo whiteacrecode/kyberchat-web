@@ -1,6 +1,6 @@
 <?php
 // submit_beta_signup.php
-// Collects Android beta tester applications and emails them via SMTP (STARTTLS + AUTH LOGIN).
+// Collects iOS or Android beta tester applications and emails them via SMTP (STARTTLS + AUTH LOGIN).
 
 function strip_header_injection(string $value): string {
     return trim(str_replace(["\r", "\n"], '', $value));
@@ -105,41 +105,89 @@ function smtp_send(string $host, int $port, string $username, string $password, 
     $dataResp = $read();
     if (!$expect($dataResp, '354')) {
         fclose($sock);
-        return [false, "DATA command failed: {$dataResp}"];
+        return [false, "DATA command rejected: {$dataResp}"];
     }
 
-    $headers = "From: KyberChat Beta <{$from}>\r\n";
-    $headers .= "To: <{$to}>\r\n";
-    $headers .= "Reply-To: <{$replyTo}>\r\n";
-    $headers .= "Subject: {$subject}\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers = "From: <{$from}>\r\n"
+        . "Reply-To: <{$replyTo}>\r\n"
+        . "To: <{$to}>\r\n"
+        . "Subject: {$subject}\r\n"
+        . "MIME-Version: 1.0\r\n"
+        . "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    // Escape lines starting with a lone "." per RFC 5321 dot-stuffing.
-    $escapedBody = preg_replace('/^\./m', '..', $body);
-
-    $write($headers . "\r\n" . $escapedBody . "\r\n.");
+    $write($headers . "\r\n" . $body . "\r\n.");
     $sendResp = $read();
     if (!$expect($sendResp, '250')) {
         fclose($sock);
-        return [false, "Message send failed: {$sendResp}"];
+        return [false, "Failed to send message: {$sendResp}"];
     }
 
     $write("QUIT");
+    $read();
     fclose($sock);
-
     return [true, ''];
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+function render_page(string $title, string $htmlContent) {
+    echo <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$title} - KyberChat</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo-link">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon">
+                <span class="logo-text">KyberChat</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">Technology</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/support">Support</a>
+                <a href="/signup" class="btn-nav-signup active">Join Beta</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container form-container">
+        <div class="form-card">
+            {$htmlContent}
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+HTML;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstName = strip_header_injection($_POST['first_name'] ?? '');
     $lastName = strip_header_injection($_POST['last_name'] ?? '');
     $email = strip_header_injection($_POST['email'] ?? '');
+    $platform = strip_header_injection($_POST['platform'] ?? 'android');
 
     if ($firstName === '' || $lastName === '' || $email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
-        echo "<h2>Please fill out all fields with a valid email address.</h2>";
-        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
+        $html = <<<HTML
+            <div class="success-card" style="text-align: center;">
+                <div class="success-icon" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #ef4444;">✕</div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px;">Invalid Application Details</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">Please fill out all fields with a valid email address.</p>
+                <a href="/signup" class="btn-submit" style="text-decoration: none; display: inline-block;">Return to Sign-Up Page</a>
+            </div>
+HTML;
+        render_page("Invalid Details", $html);
         exit();
     }
 
@@ -151,19 +199,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!$smtpHost || !$smtpPort || !$smtpUsername || !$smtpPassword) {
         error_log("Beta signup email failed: SMTP environment variables are not configured");
         http_response_code(500);
-        echo "<h2>Error submitting your application. Please try again later.</h2>";
-        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
+        $html = <<<HTML
+            <div class="success-card" style="text-align: center;">
+                <div class="success-icon" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #ef4444;">✕</div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px;">Service Unavailable</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">Error submitting your application due to a server configuration issue. Please try again later.</p>
+                <a href="/signup" class="btn-submit" style="text-decoration: none; display: inline-block;">Return to Sign-Up Page</a>
+            </div>
+HTML;
+        render_page("Submission Error", $html);
         exit();
     }
 
     $toEmail = 'kyber.android@tomw.net';
     $replyToEmail = 'no-reply@tomw.net';
 
-    $subject = "New Android Beta Tester Application";
-    $body = "A new Android beta tester application has been submitted:\n\n"
+    $subject = "New " . ucfirst($platform) . " Beta Tester Application";
+    $body = "A new " . ucfirst($platform) . " beta tester application has been submitted:\n\n"
         . "First Name: {$firstName}\n"
         . "Last Name: {$lastName}\n"
-        . "Email: {$email}\n";
+        . "Email: {$email}\n"
+        . "Platform: " . ucfirst($platform) . "\n";
 
     [$ok, $error] = smtp_send(
         $smtpHost,
@@ -178,16 +234,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     );
 
     if ($ok) {
-        echo "<h2>Thank you! Your application has been submitted successfully.</h2>";
-        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
+        $html = <<<HTML
+            <div class="success-card" style="text-align: center;">
+                <div class="success-icon">✓</div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px;">Application Submitted!</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">Thank you! Your application for the KyberChat <b>{$platform}</b> beta has been received successfully. We will be in touch shortly.</p>
+                <a href="/" class="btn-submit" style="text-decoration: none; display: inline-block;">Back to Homepage</a>
+            </div>
+HTML;
+        render_page("Application Submitted", $html);
     } else {
         error_log("Beta signup email failed: {$error}");
         http_response_code(500);
-        echo "<h2>Error submitting your application. Please try again later.</h2>";
-        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
+        $html = <<<HTML
+            <div class="success-card" style="text-align: center;">
+                <div class="success-icon" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #ef4444;">✕</div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 12px;">Submission Error</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">We were unable to deliver your application. Please check your network and try again later.</p>
+                <a href="/signup" class="btn-submit" style="text-decoration: none; display: inline-block;">Return to Sign-Up Page</a>
+            </div>
+HTML;
+        render_page("Delivery Error", $html);
     }
 } else {
-    header("Location: /android");
+    header("Location: /signup");
     exit();
 }
-
+?>

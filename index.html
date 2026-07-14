@@ -3,52 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KyberChat - Secure E2E Messaging</title>
+    <title>KyberChat - Beautiful, Post-Quantum Secure E2E Messenger</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <img src="kyberchat_logo.png" alt="KyberChat Logo" class="hero-logo">
-            <h1>KyberChat</h1>
-            <p class="subtitle">Next-generation, E2E encrypted communication build for the post quatum computing worlde.</p>
-            <div style="margin-top: 30px;">
-                <a href="https://apps.apple.com/us/app/kyberchat/id6762098636" style="display: inline-block; padding: 10px 20px; background-color: var(--primary-blue); color: var(--dark-bg); text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px;" target="_blank">App Store</a>
-<a href="/android" style="display: inline-block; padding: 10px 20px; background-color: transparent; color: var(--primary-blue); border: 1px solid var(--primary-blue); text-decoration: none; border-radius: 6px; font-weight: bold; margin: 10px;">Join Android Testers</a>
+    <!-- Modern Sticky Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="logo-link">
+                <img src="kyberchat_logo.png" alt="KyberChat Logo" class="logo-icon">
+                <span class="logo-text">KyberChat</span>
+            </a>
+            <div class="nav-links">
+                <a href="/about">Technology</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/support">Support</a>
+                <a href="/signup" class="btn-nav-signup">Join Beta</a>
             </div>
-        </header>
+        </div>
+    </nav>
 
-        <section id="features">
-            <h2>Why KyberChat?</h2>
+    <!-- Glowing Hero Section -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="badge-new">Now In Private Beta</div>
+            <h1>Your Conversations. Locked in the <span>Post-Quantum Era</span>.</h1>
+            <p class="hero-description">
+                KyberChat is the next-generation consumer messaging app. Combine state-of-the-art quantum-proof E2E encryption with group chats, high-definition video calls, self-destructing messages, and complete anonymity.
+            </p>
+            <div class="hero-actions">
+                <a href="/signup?platform=ios" class="btn-primary">Apply for iOS Beta</a>
+                <a href="/signup?platform=android" class="btn-secondary">Apply for Android Beta</a>
+            </div>
+
+            <!-- Device Mockup Frame -->
+            <div class="mockup-container">
+                <div class="app-mockup">
+                    <div class="mockup-inner">
+                        <div class="mockup-sidebar">
+                            <div class="mockup-bar active"></div>
+                            <div class="mockup-user-item">
+                                <div class="mockup-avatar active"></div>
+                                <div class="mockup-bar" style="width: 50%;"></div>
+                            </div>
+                            <div class="mockup-user-item">
+                                <div class="mockup-avatar"></div>
+                                <div class="mockup-bar" style="width: 40%;"></div>
+                            </div>
+                            <div class="mockup-user-item">
+                                <div class="mockup-avatar"></div>
+                                <div class="mockup-bar" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-chat">
+                            <div class="mockup-chat-header">
+                                <div class="mockup-bar" style="width: 30%;"></div>
+                                <span class="badge" style="font-size: 10px; padding: 2px 8px;">Quantum-Locked</span>
+                            </div>
+                            <div class="mockup-chat-messages">
+                                <div class="mockup-msg left">
+                                    Hey! Did you hear about KyberChat's new hybrid ML-KEM-768 encryption?
+                                </div>
+                                <div class="mockup-msg right">
+                                    Oh yeah! It's completely safe from future supercomputers. And look—this message will auto-delete in 30 seconds!
+                                    <div class="mockup-timer-badge">⏳ Auto-delete active</div>
+                                </div>
+                            </div>
+                            <div class="mockup-chat-input">
+                                <div class="mockup-bar" style="flex: 1; height: 30px; border-radius: 6px;"></div>
+                                <div class="mockup-bar" style="width: 60px; height: 30px; border-radius: 6px; background: var(--primary-blue);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section id="features" style="padding: 80px 0; background: #050811;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Privacy Without Compromise</h2>
+                <p>We believe security should be effortless. Get all the features you love in a modern chat app, backed by mathematical certainty.</p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">⚛️</div>
+                    <h3>Post-Quantum Security</h3>
+                    <p>Standard encryption will fail when quantum computers arrive. KyberChat secures your chats today using Hybrid ML-KEM-768 encryption, defeating "harvest now, decrypt later" attacks.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card purple">
+                    <div class="feature-icon-wrapper">🕵️‍♂️</div>
+                    <h3>Absolute Anonymity</h3>
+                    <p>No phone numbers. No emails. Just pick a username. It's fully zero-knowledge, meaning the server knows absolutely nothing about you or your connections.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">🎥</div>
+                    <h3>HD Video & Group Chats</h3>
+                    <p>Enjoy crystal-clear voice, high-definition video calls, and rich group chats. All fully end-to-end encrypted with zero latency.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card purple">
+                    <div class="feature-icon-wrapper">⏳</div>
+                    <h3>Message Auto-Delete</h3>
+                    <p>Take charge of your conversation footprint. Set customized timers to completely vaporize messages off all devices after they are read.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">🙈</div>
+                    <h3>Hidden Friend Lists</h3>
+                    <p>Keep your connections private even if someone looks at your phone. Friend lists can be completely hidden behind local biometric locks.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card purple">
+                    <div class="feature-icon-wrapper">📍</div>
+                    <h3>Secure Location Sharing</h3>
+                    <p>Share your real-time or static location with selected friends. You have total, granular control over who can see where you are.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Side-by-Side Deep Dives -->
+    <section style="padding: 60px 0;">
+        <div class="container">
             
-            <div class="card">
-                <h3>Technical Excellence</h3>
-                <p>Read about KyberChat's hybrid post-quantum encryption and zero-knowledge architecture <a href="/about" style="color: var(--primary-blue);">on our technical page</a>.</p>
+            <!-- Row 1: Account Flexibility -->
+            <div class="detail-row">
+                <div class="detail-content">
+                    <h2>You Choose Your Recovery Path</h2>
+                    <p>Traditional E2E apps lock you in, or require phone numbers. We give you complete architectural freedom over your identity:</p>
+                    <div class="detail-feature-list">
+                        <div class="detail-list-item">
+                            <span class="detail-list-icon">✓</span>
+                            <div><strong>100% Anonymous Sign-up:</strong> Create an account with just a username. If you lose your recovery phrase, the account is unrecoverable. No data is stored centrally.</div>
+                        </div>
+                        <div class="detail-list-item">
+                            <span class="detail-list-icon">✓</span>
+                            <div><strong>Standard Recovery:</strong> Opt to connect an optional email or phone number to enable standard, convenient password resets while maintaining full message encryption.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-image-panel">
+                    <div class="detail-image-box">
+                        <h4 style="margin-bottom: 15px; font-family: 'Plus Jakarta Sans', sans-serif;">Identity Settings</h4>
+                        <div class="account-choice-split">
+                            <div class="choice-box blue">
+                                <div class="choice-title">Anonymous</div>
+                                <div class="choice-desc">Username only. No recovery. Zero central trace.</div>
+                            </div>
+                            <div class="choice-box purple">
+                                <div class="choice-title">Standard</div>
+                                <div class="choice-desc">Email/Phone backup. Standard account recovery.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Absolute Privacy</h3>
-                <p>Built from the ground up with state-of-the-art End-to-End (E2E) encryption. Your messages are locked, and only you and your recipient hold the keys. See our <a href="/privacy"> Privacy Policy </a> for more information.  </p>
+            <!-- Row 2: Search Control & Sever Security -->
+            <div class="detail-row reverse">
+                <div class="detail-content">
+                    <h2>Total Control over Searchability</h2>
+                    <p>On other chat apps, anyone who has your number can find your profile. KyberChat hands search control back to you:</p>
+                    <div class="detail-feature-list">
+                        <div class="detail-list-item">
+                            <span class="detail-list-icon">✓</span>
+                            <div><strong>Discretion Mode:</strong> Go completely invisible. Nobody can search for your username unless you explicitly share your secure scan code.</div>
+                        </div>
+                        <div class="detail-list-item">
+                            <span class="detail-list-icon">✓</span>
+                            <div><strong>Zero-Knowledge Server:</strong> All user-lookup databases are cryptographically hashed. We can never be coerced into revealing lists of our users.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-image-panel">
+                    <div class="detail-image-box" style="text-align: left;">
+                        <h4 style="margin-bottom: 12px; font-family: 'Plus Jakarta Sans', sans-serif;">Search Settings</h4>
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <span style="font-size: 0.9rem;">Allow search by username</span>
+                            <span style="color: var(--primary-blue); font-weight: bold;">Enabled</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <span style="font-size: 0.9rem;">Invisible in public search</span>
+                            <span style="color: var(--accent-purple); font-weight: bold;">Active</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                            <span style="font-size: 0.9rem;">Secure QR-only discovery</span>
+                            <span style="color: var(--primary-blue); font-weight: bold;">Enabled</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Fully Open Source</h3>
-                <p>Trust through transparency. Both our iOS client and secure server infrastructure are entirely open source and available for public audit on GitHub.</p>
-            </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <h3>Reliable Infrastructure</h3>
-                <p>Powered by modern cloud architecture ensuring high availability and lightning-fast message delivery without compromising your data security.</p>
-            </div>
-        </section>
+    <!-- Call to Action Banner -->
+    <section class="container">
+        <div class="cta-banner">
+            <div class="cta-banner-glow"></div>
+            <h2>Step into Quantum-Resistant Privacy</h2>
+            <p>Help us test and shape the future of secure communication. Apply for our exclusive private beta today and secure your identity.</p>
+            <a href="/signup" class="btn-primary">Apply to Private Beta</a>
+        </div>
+    </section>
 
-        <footer>
-            <p>&copy; 2026 WhiteAcre Software. All rights reserved.</p>
-            <p><a href="/privacy" style="color: var(--text-dim);">Privacy Policy & Terms of Service</a> | <a href="/support" style="color: var(--text-dim);">Support & Disclaimer</a></p>
-        </footer>
-    </div>
+    <!-- Beautiful Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 WhiteAcre Software. Justice is served fully encrypted.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; display: flex; justify-content: center; gap: 20px;">
+                <a href="/about">Technology Deep-Dive</a>
+                <span>|</span>
+                <a href="/privacy">Privacy Policy</a>
+                <span>|</span>
+                <a href="/support">Support Desk</a>
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>

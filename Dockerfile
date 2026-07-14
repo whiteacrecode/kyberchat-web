@@ -19,7 +19,7 @@ COPY about.html .
 COPY privacy.html .
 COPY support.html .
 COPY submit_support.php .
-COPY android.html .
+COPY signup.html .
 COPY submit_beta_signup.php .
 COPY styles.css .
 COPY kyberchat_logo.png .
@@ -32,18 +32,21 @@ RUN echo 'server { \
     root /var/www/html; \
     index index.html index.php; \
     \
-    # Redirects for old/extension-based URLs to clean URLs \
+    # Redirects for old/extension-based and legacy URLs to clean URLs \
     if ($request_uri ~ ^/privacy_policy(\.html)?$) { \
         return 301 /privacy; \
     } \
     if ($request_uri ~ ^/privacy\.html$) { \
         return 301 /privacy; \
     } \
-    if ($request_uri ~ ^/android_beta(\.html)?$) { \
-        return 301 /android; \
+    if ($request_uri ~ ^/(android_beta|android)(\.html)?$) { \
+        return 301 /signup?platform=android; \
     } \
-    if ($request_uri ~ ^/android\.html$) { \
-        return 301 /android; \
+    if ($request_uri ~ ^/ios$) { \
+        return 301 /signup?platform=ios; \
+    } \
+    if ($request_uri ~ ^/signup\.html$) { \
+        return 301 /signup; \
     } \
     if ($request_uri ~ ^/about\.html$) { \
         return 301 /about; \
