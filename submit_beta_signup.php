@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($firstName === '' || $lastName === '' || $email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
         echo "<h2>Please fill out all fields with a valid email address.</h2>";
-        echo "<p><a href='android_beta.html'>Return to Sign-Up Page</a></p>";
+        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
         exit();
     }
 
@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         error_log("Beta signup email failed: SMTP environment variables are not configured");
         http_response_code(500);
         echo "<h2>Error submitting your application. Please try again later.</h2>";
-        echo "<p><a href='android_beta.html'>Return to Sign-Up Page</a></p>";
+        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
         exit();
     }
 
@@ -179,15 +179,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($ok) {
         echo "<h2>Thank you! Your application has been submitted successfully.</h2>";
-        echo "<p><a href='android_beta.html'>Return to Sign-Up Page</a></p>";
+        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
     } else {
         error_log("Beta signup email failed: {$error}");
         http_response_code(500);
         echo "<h2>Error submitting your application. Please try again later.</h2>";
-        echo "<p><a href='android_beta.html'>Return to Sign-Up Page</a></p>";
+        echo "<p><a href='/android'>Return to Sign-Up Page</a></p>";
     }
 } else {
-    header("Location: android_beta.html");
+    header("Location: /android");
     exit();
 }
 
